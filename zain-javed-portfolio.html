@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zain Javed — Dietitian &amp; Nutritionist, Pasrur, Sialkot</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FBF8F3;
+    --paper-deep:#F3EEE3;
+    --ink:#1A1A18;
+    --ink-soft:#4A4742;
+    --teal:#1B3A3A;
+    --teal-soft:#2A4D4D;
+    --amber:#C97B2E;
+    --amber-soft:#E8C8A0;
+    --clay:#A8503D;
+    --line:#DCD5C6;
+    --white:#FFFFFF;
+
+    --serif: 'Source Serif 4', serif;
+    --sans: 'Inter', sans-serif;
+    --mono: 'IBM Plex Mono', monospace;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--sans);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.01ms !important; transition-duration:0.01ms !important;}
+  }
+
+  a{color:inherit;text-decoration:none;}
+
+  .wrap{max-width:1140px;margin:0 auto;padding:0 28px;}
+
+  /* ---------- Focus visibility ---------- */
+  a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible{
+    outline:2px solid var(--amber);
+    outline-offset:3px;
+  }
+
+  /* ---------- NAV ---------- */
+  header.site{
+    position:sticky; top:0; z-index:50;
+    background:rgba(251,248,243,0.92);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:18px 28px;
+    max-width:1140px; margin:0 auto;
+  }
+  .brand{
+    font-family:var(--serif);
+    font-weight:600;
+    font-size:1.25rem;
+    color:var(--teal);
+    letter-spacing:0.01em;
+  }
+  .brand span{color:var(--amber);}
+  nav.links{display:flex; gap:32px; align-items:center;}
+  nav.links a{
+    font-size:0.92rem; font-weight:500; color:var(--ink-soft);
+    transition:color 0.2s ease;
+  }
+  nav.links a:hover{color:var(--teal);}
+  .nav-cta{
+    background:var(--teal); color:var(--paper);
+    padding:10px 20px; border-radius:2px;
+    font-size:0.88rem; font-weight:600;
+    transition:background 0.2s ease;
+  }
+  .nav-cta:hover{background:var(--teal-soft);}
+  .nav-toggle{display:none;}
+
+  @media (max-width:760px){
+    nav.links{
+      display:none;
+    }
+    .nav-toggle{
+      display:block; background:none; border:none; cursor:pointer;
+      font-family:var(--mono); font-size:0.85rem; color:var(--teal);
+      padding:8px;
+    }
+    .nav-mobile{
+      display:none;
+      flex-direction:column;
+      gap:0;
+      border-top:1px solid var(--line);
+      background:var(--paper);
+    }
+    .nav-mobile.open{display:flex;}
+    .nav-mobile a{
+      padding:16px 28px; border-bottom:1px solid var(--line);
+      font-size:0.95rem; color:var(--ink-soft);
+    }
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    padding:88px 0 64px;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero::before{
+    content:"";
+    position:absolute;
+    top:0; right:-10%;
+    width:560px; height:560px;
+    background:radial-gradient(circle, var(--amber-soft) 0%, transparent 70%);
+    opacity:0.35;
+    pointer-events:none;
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1.15fr 0.85fr;
+    gap:56px;
+    align-items:start;
+    position:relative;
+    z-index:1;
+  }
+  @media (max-width:860px){
+    .hero-grid{grid-template-columns:1fr; gap:40px;}
+  }
+
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:0.78rem;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--clay);
+    margin-bottom:18px;
+    display:flex; align-items:center; gap:10px;
+  }
+  .eyebrow .dot{width:6px; height:6px; border-radius:50%; background:var(--clay); display:inline-block;}
+
+  h1{
+    font-family:var(--serif);
+    font-weight:600;
+    font-size:clamp(2.4rem, 5vw, 3.6rem);
+    line-height:1.08;
+    color:var(--teal);
+    letter-spacing:-0.01em;
+    margin-bottom:22px;
+  }
+  h1 em{
+    font-style:normal;
+    color:var(--amber);
+  }
+
+  .hero-lede{
+    font-size:1.08rem;
+    color:var(--ink-soft);
+    max-width:480px;
+    margin-bottom:32px;
+  }
+
+  .hero-actions{display:flex; gap:14px; flex-wrap:wrap; margin-bottom:40px;}
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:14px 26px;
+    font-size:0.92rem; font-weight:600;
+    border-radius:2px;
+    transition:all 0.2s ease;
+    border:1.5px solid transparent;
+    cursor:pointer;
+  }
+  .btn-primary{background:var(--teal); color:var(--paper);}
+  .btn-primary:hover{background:var(--teal-soft); transform:translateY(-1px);}
+  .btn-ghost{border-color:var(--teal); color:var(--teal);}
+  .btn-ghost:hover{background:var(--teal); color:var(--paper);}
+
+  .hero-meta{
+    display:flex; gap:28px; flex-wrap:wrap;
+    font-family:var(--mono); font-size:0.82rem; color:var(--ink-soft);
+  }
+  .hero-meta strong{color:var(--teal); font-weight:600;}
+
+  /* ---------- Chart card (signature element preview in hero) ---------- */
+  .chart-card{
+    background:var(--white);
+    border:1px solid var(--line);
+    border-radius:3px;
+    box-shadow:0 18px 40px -20px rgba(27,58,58,0.25);
+    overflow:hidden;
+  }
+  .chart-head{
+    background:var(--teal);
+    color:var(--paper);
+    padding:16px 20px;
+    display:flex; justify-content:space-between; align-items:baseline;
+    font-family:var(--mono);
+    font-size:0.74rem;
+    letter-spacing:0.05em;
+    text-transform:uppercase;
+  }
+  .chart-head .id{color:var(--amber-soft);}
+  .chart-body{padding:22px 20px;}
+  .chart-row{
+    display:flex; justify-content:space-between; align-items:center;
+    padding:11px 0;
+    border-bottom:1px solid var(--paper-deep);
+    font-size:0.88rem;
+  }
+  .chart-row:last-child{border-bottom:none;}
+  .chart-row .label{color:var(--ink-soft);}
+  .chart-row .val{font-family:var(--mono); font-size:0.82rem; font-weight:500;}
+  .val.ok{color:var(--teal);}
+  .val.watch{color:var(--amber);}
+  .chart-foot{
+    padding:16px 20px;
+    background:var(--paper-deep);
+    font-size:0.78rem;
+    color:var(--ink-soft);
+    font-style:italic;
+  }
+
+  /* ---------- SECTION HEADERS ---------- */
+  .section{padding:80px 0;}
+  .section-head{margin-bottom:48px; max-width:620px;}
+  .section-tag{
+    font-family:var(--mono);
+    font-size:0.76rem;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--clay);
+    margin-bottom:12px;
+  }
+  h2{
+    font-family:var(--serif);
+    font-weight:600;
+    font-size:clamp(1.7rem, 3vw, 2.3rem);
+    color:var(--teal);
+    line-height:1.2;
+  }
+  .section-sub{color:var(--ink-soft); margin-top:14px; font-size:1.02rem;}
+
+  /* ---------- ABOUT ---------- */
+  .about{background:var(--paper-deep); border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
+  .about-grid{display:grid; grid-template-columns:0.9fr 1.1fr; gap:60px; align-items:start;}
+  @media (max-width:860px){.about-grid{grid-template-columns:1fr; gap:36px;}}
+  .about-body p{margin-bottom:16px; color:var(--ink-soft); font-size:1.02rem;}
+  .about-body strong{color:var(--ink); font-weight:600;}
+
+  .credential-list{display:flex; flex-direction:column; gap:0;}
+  .credential{
+    padding:18px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .credential:first-child{padding-top:0;}
+  .credential-role{font-weight:600; color:var(--teal); font-size:1rem;}
+  .credential-org{font-size:0.92rem; color:var(--ink-soft); margin-top:2px;}
+  .credential-dates{font-family:var(--mono); font-size:0.76rem; color:var(--clay); margin-top:6px;}
+
+  /* ---------- CONDITIONS (diagnostic index, not icon cards) ---------- */
+  .index-table{
+    border-top:2px solid var(--teal);
+    border-bottom:2px solid var(--teal);
+  }
+  .index-row{
+    display:grid;
+    grid-template-columns:90px 1fr 1.4fr;
+    gap:24px;
+    padding:20px 0;
+    border-bottom:1px solid var(--line);
+    align-items:baseline;
+  }
+  .index-row:last-child{border-bottom:none;}
+  @media (max-width:700px){
+    .index-row{grid-template-columns:60px 1fr; }
+    .index-row .index-detail{grid-column:1 / -1; margin-top:4px;}
+  }
+  .index-code{
+    font-family:var(--mono);
+    font-size:0.82rem;
+    font-weight:500;
+    color:var(--amber);
+    letter-spacing:0.02em;
+  }
+  .index-name{font-weight:600; color:var(--teal); font-size:1.02rem;}
+  .index-detail{color:var(--ink-soft); font-size:0.94rem;}
+
+  /* ---------- EXPERIENCE TIMELINE ---------- */
+  .timeline{position:relative; padding-left:28px; border-left:2px solid var(--line);}
+  .tl-item{position:relative; padding-bottom:44px;}
+  .tl-item:last-child{padding-bottom:0;}
+  .tl-item::before{
+    content:"";
+    position:absolute; left:-34px; top:4px;
+    width:11px; height:11px; border-radius:50%;
+    background:var(--paper); border:2.5px solid var(--amber);
+  }
+  .tl-item.current::before{background:var(--amber);}
+  .tl-dates{font-family:var(--mono); font-size:0.76rem; color:var(--clay); margin-bottom:6px; letter-spacing:0.02em;}
+  .tl-role{font-family:var(--serif); font-weight:600; font-size:1.2rem; color:var(--teal); margin-bottom:2px;}
+  .tl-org{font-size:0.92rem; color:var(--ink-soft); margin-bottom:12px;}
+  .tl-list{list-style:none; display:flex; flex-direction:column; gap:7px;}
+  .tl-list li{
+    font-size:0.95rem; color:var(--ink-soft);
+    padding-left:18px; position:relative;
+  }
+  .tl-list li::before{
+    content:"—"; position:absolute; left:0; color:var(--amber);
+  }
+
+  /* ---------- EDUCATION STRIP ---------- */
+  .edu-strip{background:var(--teal); color:var(--paper);}
+  .edu-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:rgba(251,248,243,0.15);}
+  @media (max-width:760px){.edu-grid{grid-template-columns:1fr;}}
+  .edu-cell{background:var(--teal); padding:36px 32px;}
+  .edu-label{font-family:var(--mono); font-size:0.72rem; letter-spacing:0.07em; text-transform:uppercase; color:var(--amber-soft); margin-bottom:10px;}
+  .edu-title{font-family:var(--serif); font-size:1.18rem; font-weight:600; margin-bottom:6px; line-height:1.3;}
+  .edu-org{font-size:0.88rem; color:rgba(251,248,243,0.75);}
+
+  /* ---------- LANGUAGES / SKILLS ROW ---------- */
+  .pill-row{display:flex; gap:10px; flex-wrap:wrap;}
+  .pill{
+    font-family:var(--mono); font-size:0.78rem;
+    border:1px solid var(--line); border-radius:2px;
+    padding:8px 14px;
+    color:var(--ink-soft);
+    background:var(--white);
+  }
+
+  /* ---------- CONTACT / INTAKE FORM (signature) ---------- */
+  .contact{background:var(--paper-deep); border-top:1px solid var(--line);}
+  .contact-grid{display:grid; grid-template-columns:0.85fr 1.15fr; gap:56px;}
+  @media (max-width:860px){.contact-grid{grid-template-columns:1fr; gap:40px;}}
+
+  .contact-info-item{margin-bottom:28px;}
+  .cii-label{font-family:var(--mono); font-size:0.72rem; letter-spacing:0.06em; text-transform:uppercase; color:var(--clay); margin-bottom:6px;}
+  .cii-value{font-size:1.05rem; color:var(--teal); font-weight:600;}
+  .cii-value a:hover{color:var(--amber);}
+
+  .intake-card{
+    background:var(--white);
+    border:1px solid var(--line);
+    box-shadow:0 24px 50px -24px rgba(27,58,58,0.25);
+  }
+  .intake-head{
+    background:var(--teal); color:var(--paper);
+    padding:20px 28px;
+    display:flex; justify-content:space-between; align-items:center;
+  }
+  .intake-head-title{font-family:var(--mono); font-size:0.78rem; letter-spacing:0.06em; text-transform:uppercase;}
+  .intake-head-num{font-family:var(--mono); font-size:0.72rem; color:var(--amber-soft);}
+  .intake-body{padding:32px 28px;}
+
+  .field{margin-bottom:22px;}
+  .field label{
+    display:block; font-family:var(--mono); font-size:0.74rem;
+    letter-spacing:0.04em; text-transform:uppercase;
+    color:var(--ink-soft); margin-bottom:8px;
+  }
+  .field input, .field select, .field textarea{
+    width:100%;
+    border:none;
+    border-bottom:1.5px solid var(--line);
+    background:transparent;
+    padding:10px 2px;
+    font-family:var(--sans);
+    font-size:0.98rem;
+    color:var(--ink);
+    transition:border-color 0.2s ease;
+  }
+  .field input:focus, .field select:focus, .field textarea:focus{
+    border-bottom-color:var(--amber);
+    outline:none;
+  }
+  .field textarea{resize:vertical; min-height:80px;}
+  .field-row{display:grid; grid-template-columns:1fr 1fr; gap:20px;}
+  @media (max-width:500px){.field-row{grid-template-columns:1fr;}}
+
+  .submit-btn{
+    width:100%;
+    background:var(--amber); color:var(--white);
+    border:none; padding:15px;
+    font-family:var(--sans); font-weight:700; font-size:0.95rem;
+    letter-spacing:0.01em;
+    cursor:pointer;
+    transition:background 0.2s ease;
+  }
+  .submit-btn:hover{background:#B36A22;}
+
+  .form-note{font-size:0.78rem; color:var(--ink-soft); margin-top:14px; text-align:center;}
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    background:var(--ink);
+    color:rgba(251,248,243,0.65);
+    padding:44px 0 32px;
+  }
+  .foot-grid{display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:24px;}
+  .foot-brand{font-family:var(--serif); font-size:1.1rem; color:var(--paper); margin-bottom:8px;}
+  .foot-note{font-size:0.84rem; max-width:380px;}
+  .foot-links{display:flex; gap:24px; font-size:0.84rem;}
+  .foot-links a:hover{color:var(--amber-soft);}
+  .foot-bottom{
+    margin-top:32px; padding-top:24px; border-top:1px solid rgba(251,248,243,0.12);
+    font-size:0.76rem; font-family:var(--mono); color:rgba(251,248,243,0.4);
+  }
+
+  /* reveal on scroll */
+  .reveal{opacity:0; transform:translateY(16px); transition:opacity 0.6s ease, transform 0.6s ease;}
+  .reveal.in{opacity:1; transform:translateY(0);}
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="nav">
+    <div class="brand">Zain Javed <span>·</span> RD</div>
+    <nav class="links">
+      <a href="#about">About</a>
+      <a href="#conditions">Conditions Treated</a>
+      <a href="#experience">Experience</a>
+      <a href="#education">Education</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a href="#contact" class="nav-cta" style="display:none" id="desktopCta">Book Consultation</a>
+    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navMobile">MENU</button>
+  </div>
+  <div class="nav-mobile" id="navMobile">
+    <a href="#about">About</a>
+    <a href="#conditions">Conditions Treated</a>
+    <a href="#experience">Experience</a>
+    <a href="#education">Education</a>
+    <a href="#contact">Contact</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow"><span class="dot"></span> Pasrur, Sialkot, Punjab</div>
+      <h1>Nutrition care built around your <em>actual</em> diagnosis — not a generic diet.</h1>
+      <p class="hero-lede">Zain Javed is a Bachelor's-qualified dietitian with 3+ years of clinical experience managing diabetes, PCOS, thyroid disorders, hypertension, and gastrointestinal conditions through individualized medical nutrition therapy.</p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn btn-primary">Book a Consultation</a>
+        <a href="#conditions" class="btn btn-ghost">View Conditions Treated</a>
+      </div>
+      <div class="hero-meta">
+        <span><strong>3+ yrs</strong> clinical practice</span>
+        <span><strong>12+</strong> conditions managed</span>
+        <span><strong>Al Noor Hospital</strong>, Pasrur</span>
+      </div>
+    </div>
+
+    <div class="chart-card reveal" id="heroChart">
+      <div class="chart-head">
+        <span>Diet Protocol Snapshot</span>
+        <span class="id">REF-014</span>
+      </div>
+      <div class="chart-body">
+        <div class="chart-row"><span class="label">Condition focus</span><span class="val watch">Type 2 Diabetes</span></div>
+        <div class="chart-row"><span class="label">Plan type</span><span class="val">Carb-controlled MNT</span></div>
+        <div class="chart-row"><span class="label">Review cycle</span><span class="val ok">2 weeks</span></div>
+        <div class="chart-row"><span class="label">Counseling mode</span><span class="val">In-person / Follow-up</span></div>
+        <div class="chart-row"><span class="label">Supervising RD</span><span class="val">Z. Javed</span></div>
+      </div>
+      <div class="chart-foot">Every plan is built around the patient's labs, lifestyle, and food access — not a template.</div>
+    </div>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="wrap section reveal">
+    <div class="about-grid">
+      <div>
+        <div class="section-tag">About</div>
+        <h2>Evidence-based care, delivered patiently.</h2>
+      </div>
+      <div class="about-body">
+        <p>Zain Javed holds a <strong>Bachelor of Dietetics and Nutritional Sciences</strong> from the University of Sialkot and has spent the past three years inside hospital and clinical settings translating lab results and physician notes into food plans patients can actually follow.</p>
+        <p>His practice is built on the belief that nutrition counseling fails when it's generic. A diabetic plan and a PCOS plan are not interchangeable, and a plan that ignores what's actually available in a patient's kitchen won't survive past week one. Every protocol he writes starts from the patient's diagnosis, current medication, and daily routine.</p>
+        <p>Before dietetics, Zain spent years in administrative and clinical-support roles — work that shaped a habit of precise record-keeping and clear, calm communication that now carries directly into how he runs patient files and follow-up.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="conditions">
+  <div class="wrap reveal">
+    <div class="section-head">
+      <div class="section-tag">Conditions Treated</div>
+      <h2>A working index, not a marketing list.</h2>
+      <p class="section-sub">Each line below reflects a protocol Zain has actively managed in clinical practice — not a category he simply read about.</p>
+    </div>
+
+    <div class="index-table">
+      <div class="index-row">
+        <span class="index-code">T2DM</span>
+        <span class="index-name">Diabetes Management</span>
+        <span class="index-detail">Carbohydrate-controlled meal structuring, glycemic load planning, and ongoing review against blood sugar trends.</span>
+      </div>
+      <div class="index-row">
+        <span class="index-code">HTN</span>
+        <span class="index-name">Hypertension Management</span>
+        <span class="index-detail">Sodium-restricted, DASH-aligned dietary protocols tailored to medication and comorbidities.</span>
+      </div>
+      <div class="index-row">
+        <span class="index-code">PCOS</span>
+        <span class="index-name">PCOS &amp; Thyroid Diet Plans</span>
+        <span class="index-detail">Insulin-sensitivity-focused plans addressing hormonal and metabolic symptoms together, not in isolation.</span>
+      </div>
+      <div class="index-row">
+        <span class="index-code">WT</span>
+        <span class="index-name">Weight Management (Loss / Gain)</span>
+        <span class="index-detail">Calorie-structured plans for sustainable loss, or supervised gain for underweight and child-growth cases.</span>
+      </div>
+      <div class="index-row">
+        <span class="index-code">OB-LACT</span>
+        <span class="index-name">Pregnancy &amp; Lactation Nutrition</span>
+        <span class="index-detail">Trimester-specific and post-natal nutrient planning to protect both maternal and infant health.</span>
+      </div>
+      <div class="index-row">
+        <span class="index-code">GI-IBS</span>
+        <span class="index-name">Gastrointestinal Disorders (IBS)</span>
+        <span class="index-detail">Trigger-food identification and gut-friendly meal sequencing for IBS, gastric discomfort, and reflux.</span>
+      </div>
+      <div class="index-row">
+        <span class="index-code">ONC</span>
+        <span class="index-name">Cancer Support Nutrition</span>
+        <span class="index-detail">Appetite and strength-preserving nutrition support alongside oncology treatment plans.</span>
+      </div>
+      <div class="index-row">
+        <span class="index-code">ALG</span>
+        <span class="index-name">Food Allergy Management</span>
+        <span class="index-detail">Safe substitution planning that maintains nutritional completeness around confirmed allergens.</span>
+      </div>
+      <div class="index-row">
+        <span class="index-code">LIPID</span>
+        <span class="index-name">Cholesterol Management</span>
+        <span class="index-detail">Fat-profile restructuring of daily meals to support healthier lipid panels over time.</span>
+      </div>
+      <div class="index-row">
+        <span class="index-code">URIC</span>
+        <span class="index-name">Uric Acid &amp; Arthritis Diet</span>
+        <span class="index-detail">Purine-aware meal planning to ease joint pain and support long-term mobility.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="experience" style="background:var(--paper-deep); border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
+  <div class="wrap reveal">
+    <div class="section-head">
+      <div class="section-tag">Experience</div>
+      <h2>From clinical floor to counseling room.</h2>
+    </div>
+
+    <div class="timeline">
+      <div class="tl-item current">
+        <div class="tl-dates">APRIL 2023 — JANUARY 2025</div>
+        <div class="tl-role">Dietitian / Nutritionist</div>
+        <div class="tl-org">Al Noor Hospital, Pasrur — District Sialkot</div>
+        <ul class="tl-list">
+          <li>Provided individualized nutrition counseling across diabetes, hypertension, PCOS, thyroid disorders, and cancer support.</li>
+          <li>Designed customized meal plans for weight loss, weight gain, and child growth optimization.</li>
+          <li>Managed nutritional care through pregnancy and lactation, ensuring safe, adequate nutrient intake.</li>
+          <li>Counseled patients on IBS, gastric disorders, and food allergy management.</li>
+          <li>Developed protocols for high uric acid, cholesterol, and joint/arthritis-related pain.</li>
+        </ul>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dates">DATES AS APPLICABLE</div>
+        <div class="tl-role">Academic Coordinator</div>
+        <div class="tl-org">Grand Asian University of Sialkot</div>
+        <ul class="tl-list">
+          <li>Provided high-level administrative support across academic programs and student services.</li>
+          <li>Managed scheduling, communications, and confidential student records.</li>
+          <li>Administered assessments and coordinated program logistics.</li>
+        </ul>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dates">NOVEMBER 2018 — DECEMBER 2022</div>
+        <div class="tl-role">Computer Operator</div>
+        <div class="tl-org">Vocational Training Institute, Pasrur</div>
+        <ul class="tl-list">
+          <li>Performed accurate data entry and maintained institutional digital records.</li>
+          <li>Resolved hardware and software issues through ongoing system monitoring.</li>
+          <li>Ensured timely, secure backups of critical institutional data.</li>
+        </ul>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dates">JANUARY 2014 — JUNE 2016</div>
+        <div class="tl-role">Dispenser / Medical Assistant</div>
+        <div class="tl-org">Bilal International Hospital</div>
+        <ul class="tl-list">
+          <li>Accurately dispensed medications per physician prescriptions, prioritizing patient safety.</li>
+          <li>Assisted doctors and pharmacists across private clinic and hospital pharmacy settings.</li>
+          <li>Coordinated patient scheduling and prior authorization processing.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="edu-strip" id="education">
+  <div class="wrap reveal" style="padding:64px 28px 0;">
+    <div class="section-tag" style="color:var(--amber-soft);">Education</div>
+    <h2 style="color:var(--paper); margin-bottom:0;">Academic foundation.</h2>
+  </div>
+  <div class="edu-grid" style="margin-top:36px;">
+    <div class="edu-cell">
+      <div class="edu-label">Bachelor's Degree</div>
+      <div class="edu-title">Dietetics &amp; Nutritional Sciences</div>
+      <div class="edu-org">University of Sialkot — Graduated March 2023</div>
+    </div>
+    <div class="edu-cell">
+      <div class="edu-label">Intermediate (FSc)</div>
+      <div class="edu-title">Pre-Medical Group</div>
+      <div class="edu-org">Punjab College, Sialkot — Completed January 2019</div>
+    </div>
+    <div class="edu-cell">
+      <div class="edu-label">Secondary School</div>
+      <div class="edu-title">Science Group, SSC</div>
+      <div class="edu-org">Punjab Board — Completed July 2015</div>
+    </div>
+  </div>
+  <div class="wrap" style="padding:36px 28px 64px;">
+    <div class="pill-row">
+      <span class="pill">Urdu — Native</span>
+      <span class="pill">Punjabi — Native</span>
+      <span class="pill">English — Professional</span>
+      <span class="pill">Nutrition Assessment</span>
+      <span class="pill">Medical Nutrition Therapy</span>
+      <span class="pill">Patient Record Keeping</span>
+    </div>
+  </div>
+</section>
+
+<section class="contact section" id="contact">
+  <div class="wrap reveal">
+    <div class="section-head">
+      <div class="section-tag">Get In Touch</div>
+      <h2>Start with a consultation.</h2>
+      <p class="section-sub">Tell Zain a bit about your concern and current diagnosis, and he'll follow up to schedule your first session.</p>
+    </div>
+
+    <div class="contact-grid">
+      <div>
+        <div class="contact-info-item">
+          <div class="cii-label">Phone / WhatsApp</div>
+          <div class="cii-value"><a href="tel:+923149500548">+92 314 9500548</a></div>
+        </div>
+        <div class="contact-info-item">
+          <div class="cii-label">Email</div>
+          <div class="cii-value"><a href="mailto:zainjaved607@gmail.com">zainjaved607@gmail.com</a></div>
+        </div>
+        <div class="contact-info-item">
+          <div class="cii-label">Practice Location</div>
+          <div class="cii-value">Pasrur, Sialkot, Punjab, Pakistan</div>
+        </div>
+        <div class="contact-info-item">
+          <div class="cii-label">Consultation Hours</div>
+          <div class="cii-value" style="font-size:0.95rem; color:var(--ink-soft); font-weight:400;">By appointment — confirmed via phone or WhatsApp after form submission.</div>
+        </div>
+      </div>
+
+      <div class="intake-card">
+        <div class="intake-head">
+          <span class="intake-head-title">Consultation Request</span>
+          <span class="intake-head-num">FORM 01</span>
+        </div>
+        <div class="intake-body">
+          <form id="intakeForm">
+            <div class="field-row">
+              <div class="field">
+                <label for="fname">Full name</label>
+                <input type="text" id="fname" name="fname" required>
+              </div>
+              <div class="field">
+                <label for="fphone">Phone / WhatsApp</label>
+                <input type="tel" id="fphone" name="fphone" required>
+              </div>
+            </div>
+            <div class="field">
+              <label for="fcondition">Primary concern</label>
+              <select id="fcondition" name="fcondition" required>
+                <option value="" disabled selected>Select the closest match</option>
+                <option>Diabetes Management</option>
+                <option>Hypertension</option>
+                <option>PCOS / Thyroid</option>
+                <option>Weight Loss / Gain</option>
+                <option>Pregnancy / Lactation</option>
+                <option>Gastrointestinal (IBS)</option>
+                <option>Cholesterol / Uric Acid</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="fnotes">Brief notes (optional)</label>
+              <textarea id="fnotes" name="fnotes" placeholder="Any diagnosis, medication, or context that would help prepare for your first session."></textarea>
+            </div>
+            <button type="submit" class="submit-btn">Send Consultation Request</button>
+            <p class="form-note">Submitting opens a WhatsApp message pre-filled with your details, sent directly to Zain.</p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-grid">
+    <div>
+      <div class="foot-brand">Zain Javed</div>
+      <p class="foot-note">Dietitian &amp; Nutritionist practicing in Pasrur, Sialkot. Individualized medical nutrition therapy grounded in clinical evidence.</p>
+    </div>
+    <div class="foot-links">
+      <a href="#about">About</a>
+      <a href="#conditions">Conditions</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+  <div class="wrap foot-bottom">
+    © 2026 Zain Javed. All rights reserved.
+  </div>
+</footer>
+
+<script>
+  // Mobile nav toggle
+  const navToggle = document.getElementById('navToggle');
+  const navMobile = document.getElementById('navMobile');
+  navToggle.addEventListener('click', () => {
+    const isOpen = navMobile.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', isOpen);
+  });
+  navMobile.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      navMobile.classList.remove('open');
+      navToggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  // Reveal on scroll
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if(e.isIntersecting){
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, {threshold:0.12});
+  revealEls.forEach(el => io.observe(el));
+
+  // Intake form -> WhatsApp
+  const form = document.getElementById('intakeForm');
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name = document.getElementById('fname').value.trim();
+    const phone = document.getElementById('fphone').value.trim();
+    const condition = document.getElementById('fcondition').value;
+    const notes = document.getElementById('fnotes').value.trim();
+
+    let msg = `Consultation Request%0A%0AName: ${encodeURIComponent(name)}%0APhone: ${encodeURIComponent(phone)}%0AConcern: ${encodeURIComponent(condition)}`;
+    if(notes){
+      msg += `%0ANotes: ${encodeURIComponent(notes)}`;
+    }
+    const waNumber = "923149500548";
+    const url = `https://wa.me/${waNumber}?text=${msg}`;
+    window.open(url, '_blank');
+  });
+</script>
+
+</body>
+</html>
